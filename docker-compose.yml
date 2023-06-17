@@ -1,9 +1,24 @@
-version: "3"
+version: '3'
 services:
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - 3000:3000
+    api:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        network_mode: host
+        ports:
+            - 3000:3000
+        env_file:
+            - .env
 
+    api_dev:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        network_mode: host
+        ports:
+            - 3000:3000
+        env_file:
+            - .env
+        volumes:
+            - ./src:/app/src
+        command: npm run dev

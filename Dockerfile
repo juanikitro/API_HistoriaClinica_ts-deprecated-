@@ -1,4 +1,4 @@
-FROM node:20-bullseye
+FROM node:18.16.0-bullseye
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-ENV NODE_ENV=production
+ENV env=production
 
 RUN npm run build
 
