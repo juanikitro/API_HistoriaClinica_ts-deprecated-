@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2023-06-20T03:16:53.840Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.4.0 Chrome/112.0.5615.204 Electron/24.5.1 Safari/537.36" etag="edVBnJi1KyBN149JZyWB" version="21.4.0" type="device">
+<mxfile host="Electron" modified="2023-06-20T04:20:19.059Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.4.0 Chrome/112.0.5615.204 Electron/24.5.1 Safari/537.36" etag="vp-Hq_Yt1upxYxVRw2FF" version="21.4.0" type="device">
   <diagram id="tqikUtxPhzJvZVu4Q-P9" name="Página-1">
     <mxGraphModel dx="1816" dy="581" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -98,7 +98,7 @@
         <mxCell id="SzLB2kqHh-W_0eBdyGde-42" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="SzLB2kqHh-W_0eBdyGde-38" target="SzLB2kqHh-W_0eBdyGde-41" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="SzLB2kqHh-W_0eBdyGde-38" value="(find needed data)&lt;br&gt;(para entrar mas en detalle necesito acceso a la db)" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+        <mxCell id="SzLB2kqHh-W_0eBdyGde-38" value="Build all person data" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="354" y="720" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="SzLB2kqHh-W_0eBdyGde-41" value="return 200 + the converted data" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
