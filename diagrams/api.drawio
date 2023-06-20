@@ -1,11 +1,11 @@
-<mxfile host="Electron" modified="2023-06-16T22:57:34.411Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.4.0 Chrome/112.0.5615.204 Electron/24.5.1 Safari/537.36" etag="mI31DD_WLHLEkgiEhIrD" version="21.4.0" type="device">
+<mxfile host="Electron" modified="2023-06-20T04:20:19.059Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.4.0 Chrome/112.0.5615.204 Electron/24.5.1 Safari/537.36" etag="vp-Hq_Yt1upxYxVRw2FF" version="21.4.0" type="device">
   <diagram id="tqikUtxPhzJvZVu4Q-P9" name="Página-1">
-    <mxGraphModel dx="2713" dy="843" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1816" dy="581" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="SzLB2kqHh-W_0eBdyGde-36" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="90" y="480" width="648" height="240" as="geometry" />
+          <mxGeometry x="90" y="480" width="648" height="440" as="geometry" />
         </mxCell>
         <mxCell id="SzLB2kqHh-W_0eBdyGde-31" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-460" y="145" width="460" height="290" as="geometry" />
@@ -43,7 +43,7 @@
         <mxCell id="SzLB2kqHh-W_0eBdyGde-20" value="y" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="SzLB2kqHh-W_0eBdyGde-15" target="SzLB2kqHh-W_0eBdyGde-19" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="SzLB2kqHh-W_0eBdyGde-35" value="n" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="SzLB2kqHh-W_0eBdyGde-15" target="SzLB2kqHh-W_0eBdyGde-46" edge="1">
+        <mxCell id="SzLB2kqHh-W_0eBdyGde-35" value="n" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="SzLB2kqHh-W_0eBdyGde-15" target="btfMsoCEjF6bPDK-sMk6-1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="414" y="500" as="targetPoint" />
           </mxGeometry>
@@ -98,26 +98,28 @@
         <mxCell id="SzLB2kqHh-W_0eBdyGde-42" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="SzLB2kqHh-W_0eBdyGde-38" target="SzLB2kqHh-W_0eBdyGde-41" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="SzLB2kqHh-W_0eBdyGde-38" value="(find needed data)&lt;br&gt;(para entrar mas en detalle necesito acceso a la db)" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="354" y="640" width="120" height="60" as="geometry" />
+        <mxCell id="SzLB2kqHh-W_0eBdyGde-38" value="Build all person data" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="354" y="720" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="SzLB2kqHh-W_0eBdyGde-41" value="return 200 + the converted data" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="120" y="340" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="SzLB2kqHh-W_0eBdyGde-48" value="n" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="SzLB2kqHh-W_0eBdyGde-46" target="SzLB2kqHh-W_0eBdyGde-47" edge="1">
-          <mxGeometry x="-0.8238" relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="680" y="540" />
-              <mxPoint x="680" y="290" />
-            </Array>
+        <mxCell id="btfMsoCEjF6bPDK-sMk6-4" value="n" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="SzLB2kqHh-W_0eBdyGde-46" target="SzLB2kqHh-W_0eBdyGde-47">
+          <mxGeometry x="-0.8327" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="SzLB2kqHh-W_0eBdyGde-46" value="find person?" style="rhombus;whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="374" y="500" width="80" height="80" as="geometry" />
+        <mxCell id="SzLB2kqHh-W_0eBdyGde-46" value="find &lt;br&gt;person &lt;br&gt;ID?" style="rhombus;whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="374" y="585" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="SzLB2kqHh-W_0eBdyGde-47" value="return 404" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="514" y="260" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="btfMsoCEjF6bPDK-sMk6-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="btfMsoCEjF6bPDK-sMk6-1" target="SzLB2kqHh-W_0eBdyGde-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="btfMsoCEjF6bPDK-sMk6-1" value="SELECT persCodigo FROM SanMiguel.dbo.Persona WHERE persNroDocument=@documentNumber AND tdocCodigo= @documentType AND persSexo=@gender" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="259" y="499.5" width="310" height="60.5" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

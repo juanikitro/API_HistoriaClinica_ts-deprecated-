@@ -18,17 +18,17 @@ export const documentTypes: DocumentTypes = {
   11: 'Parto',
 };
 
-export async function findPersonId(body: RequestBody) {
+export async function findPersonId(body: RequestBody): Promise<number> {
   const pool = await db.poolConnect;
 
-  const query = 'SELECT persCodigo FROM SanMiguel.dbo.Persona WHERE persNroDocumento=@documentNumber AND tdocCodigo=@documentType AND persSexo=@gender;';
+  const query = 'SELECT TOP 1 persCodigo FROM SanMiguel.dbo.Persona WHERE persNroDocumento=@documentNumber AND tdocCodigo=@documentType AND persSexo=@gender;';
   const result = await pool.request()
     .input('documentNumber', String(body.document_number))
     .input('documentType', String(Object.keys(documentTypes).find((key) => documentTypes[key] === body.document_type)))
     .input('gender', String(body.gender))
     .query(query);
 
-  return result;
+  return result.recordset[0].persCodigo;
 }
 
 export default findPersonId;
