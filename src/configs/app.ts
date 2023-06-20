@@ -1,6 +1,7 @@
 import express from 'express';
 import apiEndpoints from '../routes/endpoints';
 import authenticateToken from '../middlewares/authenticateToken';
+import searchInRedis from '../middlewares/redisCacheMiddleware';
 
 // Create Express server
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Custom Middlewares
 app.use('/v1/api', authenticateToken);
+app.use('/v1/api', searchInRedis);
 
 apiEndpoints(app);
 

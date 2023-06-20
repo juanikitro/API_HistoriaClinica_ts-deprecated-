@@ -4,6 +4,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+        restart: always
         network_mode: host
         ports:
             - 3000:3000
@@ -13,3 +14,13 @@ services:
             - ./src:/app/src
             - ./global.d.ts:/app/global.d.ts
         command: npm run dev
+        depends_on:
+            - redis
+
+    redis:
+        image: redis:latest
+        ports:
+            - 6379:6379
+        restart: always
+        volumes: 
+            - ./cache:/data

@@ -145,3 +145,5 @@ dist
 
 *.$api.drawio.*
 diagrams/.$api.drawio.bkp
+
+cache/

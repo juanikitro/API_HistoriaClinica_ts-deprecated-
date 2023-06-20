@@ -3,6 +3,7 @@ import { RequestBody } from '../../global';
 import { findPersonId } from '../services/findPersonId';
 import { findPersonTurns } from '../services/findPersonTurns';
 import { findPersonHealthCenters } from '../services/findPersonHealthCenters';
+import cacheResponse from '../services/cacheResponse';
 
 async function findAllPersonData(req: Request, res: Response) {
   try {
@@ -37,6 +38,8 @@ async function findAllPersonData(req: Request, res: Response) {
         turnCodigo: personTurns.turnCodigo,
       },
     };
+
+    cacheResponse(`${body.document_number}${body.document_type}${body.gender}`, allPersonData);
 
     return res.send(allPersonData);
   } catch (error) {
