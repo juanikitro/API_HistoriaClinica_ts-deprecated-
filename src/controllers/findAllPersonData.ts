@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { RequestBody } from '../../global';
 import { findPersonId } from '../services/findPersonId';
 import { findPersonTurns } from '../services/findPersonTurns';
+import { findPersonHealthCenters } from '../services/findPersonHealthCenters';
 
 async function findAllPersonData(req: Request, res: Response) {
   try {
@@ -13,6 +14,7 @@ async function findAllPersonData(req: Request, res: Response) {
 
     const personId = await findPersonId(body);
     const personTurns = await findPersonTurns(personId);
+    const personHealthCenters = await findPersonHealthCenters(personId);
 
     const allPersonData = {
       persona: {
@@ -20,6 +22,11 @@ async function findAllPersonData(req: Request, res: Response) {
         document_number: body.document_number,
         gender: body.gender,
         persona_codigo: personId,
+      },
+      centros_de_salud_donde_se_atiende: {
+        value: personHealthCenters.value,
+        ultima_fecha_de_consulta: personHealthCenters.ultima_fecha_de_consulta,
+        turnos_codigos: personHealthCenters.turnCodigos,
       },
       turnos: {
         value: personTurns.value,
