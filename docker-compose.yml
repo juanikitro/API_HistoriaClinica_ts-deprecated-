@@ -21,4 +21,5 @@ services:
             - .env
         volumes:
             - ./src:/app/src
+            - ./global.d.ts:/app/global.d.ts
         command: npm run dev
