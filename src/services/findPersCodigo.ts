@@ -26,7 +26,7 @@ export const documentTypes: DocumentTypes = {
 export async function findpersCodigo(body: RequestBody): Promise<number> {
   const pool = await db.poolConnect;
 
-  const query = 'SELECT TOP 1 persCodigo FROM SanMiguel.dbo.Persona WHERE persNroDocumento=@documentNumber AND tdocCodigo=@documentType AND persSexo=@gender;';
+  const query = 'SELECT TOP 1 persCodigo FROM SanMiguel.dbo.Persona WHERE persNroDocumento=@documentNumber AND tdocCodigo=@documentType AND persSexo=@gender ORDER BY persCodigo DESC;';
   const result = await pool.request()
     .input('documentNumber', String(body.document_number))
     .input('documentType', String(Object.keys(documentTypes).find((key) => documentTypes[key] === body.document_type)))
