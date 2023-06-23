@@ -4,6 +4,7 @@ import { RequestBody } from '../../global';
 import { findpersCodigo } from '../services/findPersCodigo';
 import { findPersonTurns } from '../services/findPersonTurns';
 import { findPersonHealthCenters } from '../services/findPersonHealthCenters';
+import { findPersonMedicalControls } from '../services/findPersonMedicalControls';
 import cacheResponse from '../services/cacheResponse';
 
 /**
@@ -23,6 +24,7 @@ async function findAllPersonData(req: Request, res: Response): Promise<Response>
     const persCodigo = await findpersCodigo(body);
     const personTurns = await findPersonTurns(persCodigo);
     const personHealthCenters = await findPersonHealthCenters(persCodigo);
+    const personMedicalControls = await findPersonMedicalControls(persCodigo);
 
     const allPersonData = {
       persona: {
@@ -30,6 +32,11 @@ async function findAllPersonData(req: Request, res: Response): Promise<Response>
         document_number: body.document_number,
         gender: body.gender,
         persona_codigo: persCodigo,
+      },
+      realiza_controles_medicos: {
+        value: personMedicalControls.value,
+        ultima_fecha_de_consulta: personMedicalControls.ultima_fecha_de_consulta,
+        turnos_codigo: personMedicalControls.turnCodigo,
       },
       centros_de_salud_donde_se_atiende: {
         value: personHealthCenters.value,
