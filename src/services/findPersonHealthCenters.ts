@@ -1,6 +1,11 @@
 import db from '../database/connection';
 
-export async function findPersonHealthCenters(personId: number): Promise<{
+/**
+ * This function retrieves health center info for a given person ID from a database.
+ * @param {number} persCodigo
+ * @returns All the necessary information about the medical centers where the person was treated.
+ */
+export async function findPersonHealthCenters(persCodigo: number): Promise<{
   'value': string[],
   'ultima_fecha_de_consulta': Date[],
   'turnCodigos': number[]
@@ -17,11 +22,11 @@ export async function findPersonHealthCenters(personId: number): Promise<{
     LEFT JOIN SanMiguel.dbo.Ubicacion AS UBI ON
       TURN.ubicCodigo = UBI.ubicCodigo
     WHERE
-      TURN.paciCodigo = @personId AND
+      TURN.paciCodigo = @persCodigo AND
       TURN.turnLlegada IS NOT NULL
       ORDER BY TURN.turnCodigo DESC;`;
   const result = await pool.request()
-    .input('personId', String(personId))
+    .input('persCodigo', String(persCodigo))
     .query(query);
 
   return {

@@ -1,6 +1,12 @@
 import db from '../database/connection';
 
-export async function findPersonTurns(personId: number): Promise<{
+/**
+ * This function retrieves information about the latest appointment of a given patient,
+ * including the date, type of specialty, and whether it was attended or rescheduled.
+ * @param {number} persCodigo
+ * @returns All the needed info about the person's turns.
+ */
+export async function findPersonTurns(persCodigo: number): Promise<{
   value: Date | null,
   tipo_de_especialidad: string | null,
   asistio: boolean | null,
@@ -23,10 +29,10 @@ export async function findPersonTurns(personId: number): Promise<{
     LEFT JOIN SanMiguel.dbo.SubEspecialidad AS SUB ON
       TURN.suesCodigo = SUB.suesCodigo
     WHERE
-      TURN.paciCodigo = @personId
+      TURN.paciCodigo = @persCodigo
     ORDER BY TURN.turnCodigo DESC;`;
   const result = await pool.request()
-    .input('personId', String(personId))
+    .input('persCodigo', String(persCodigo))
     .query(query);
 
   return {

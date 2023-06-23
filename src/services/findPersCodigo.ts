@@ -18,7 +18,12 @@ export const documentTypes: DocumentTypes = {
   11: 'Parto',
 };
 
-export async function findPersonId(body: RequestBody): Promise<number> {
+/**
+ * It finds a persCodigo in the DB based on a document number, document type, and gender.
+ * @param {RequestBody} body -
+ * @returns a number or ID (persCodigo).
+ */
+export async function findpersCodigo(body: RequestBody): Promise<number> {
   const pool = await db.poolConnect;
 
   const query = 'SELECT TOP 1 persCodigo FROM SanMiguel.dbo.Persona WHERE persNroDocumento=@documentNumber AND tdocCodigo=@documentType AND persSexo=@gender;';
@@ -31,4 +36,4 @@ export async function findPersonId(body: RequestBody): Promise<number> {
   return result.recordset[0].persCodigo;
 }
 
-export default findPersonId;
+export default findpersCodigo;

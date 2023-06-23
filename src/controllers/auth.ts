@@ -2,6 +2,13 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
+/**
+ * It authenticates a user by checking their credentials and returning a JWT token if they match.
+ * @param {Request} req
+ * @param {Response} res
+ * @returns If the user and password match the environment variables, a JWT token is returned with a
+ * status code of 200. If not, a status code of 401 with the message "Unauthorized" is returned.
+ */
 function auth(req: Request, res: Response): Response {
   const { user, password } = req.body;
 
