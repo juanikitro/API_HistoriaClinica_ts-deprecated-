@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import db from '../database/connection';
 
 /**
@@ -20,9 +21,10 @@ export async function findPersonTurns(persCodigo: number): Promise<{
     SELECT
       TOP 1
       TURN.turnCodigo,
-      TURN.turnFecha,
+      TURN.turnFechaAsignado,
       TURN.turnLlegada,
       TURN.turnReprogramar,
+      TURN.turnFecha, 
       SUB.suesDescripcion
     FROM
       SanMiguel.dbo.Turno AS TURN
@@ -36,12 +38,12 @@ export async function findPersonTurns(persCodigo: number): Promise<{
     .query(query);
 
   return {
-    value: result.recordset[0]?.turnFecha ?? null,
+    value: result.recordset[0]?.turnFechaAsignado ?? null,
     tipo_de_especialidad: result.recordset[0]?.suesDescripcion ?? null,
     asistio: !!result.recordset[0]?.turnLlegada,
     reprogramado: (result.recordset[0]?.turnReprogramar === 1),
-    reprogramado_fecha: null, // TODO: Todos son 0
-    turnCodigo: result.recordset[0]?.turnCodigo ?? null, // TODO: No encuentro este dato
+    reprogramado_fecha: (result.recordset[0]?.turnReprogramar === 1) ? result.recordset[0]?.turnFecha : null,
+    turnCodigo: result.recordset[0]?.turnCodigo ?? null,
   };
 }
 
