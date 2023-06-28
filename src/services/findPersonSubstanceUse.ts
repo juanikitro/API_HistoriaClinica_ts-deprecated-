@@ -1,6 +1,6 @@
 import db from '../database/connection';
 
-export async function findPersonDiagnostics(persCodigo: number): Promise<{
+export async function findPersonSubstanceUse(persCodigo: number): Promise<{
   'atraviesa_consumo_de_sustancias': {
     value: boolean,
     ultima_fecha_de_consulta: string | null,
@@ -37,4 +37,4 @@ export async function findPersonDiagnostics(persCodigo: number): Promise<{
   };
 }
 
-export default findPersonDiagnostics;
+export default findPersonSubstanceUse;

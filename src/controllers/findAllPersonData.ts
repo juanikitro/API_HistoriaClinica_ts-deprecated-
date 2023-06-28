@@ -5,7 +5,7 @@ import { findpersCodigo } from '../services/findPersCodigo';
 import { findPersonTurns } from '../services/findPersonTurns';
 import { findPersonHealthCenters } from '../services/findPersonHealthCenters';
 import { findPersonMedicalControls } from '../services/findPersonMedicalControls';
-import { findPersonDiagnostics } from '../services/findPersonDiagnostics';
+import { findPersonSubstanceUse } from '../services/findPersonSubstanceUse';
 import cacheResponse from '../services/cacheResponse';
 
 /**
@@ -23,7 +23,7 @@ async function findAllPersonData(req: Request, res: Response): Promise<Response>
     }
 
     const persCodigo = await findpersCodigo(body);
-    const personDiagnostics = await findPersonDiagnostics(persCodigo);
+    const personDiagnostics = await findPersonSubstanceUse(persCodigo);
     const personMedicalControls = await findPersonMedicalControls(persCodigo);
     const personHealthCenters = await findPersonHealthCenters(persCodigo);
     const personTurns = await findPersonTurns(persCodigo);
