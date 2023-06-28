@@ -5,6 +5,7 @@ import { findpersCodigo } from '../services/findPersCodigo';
 import { findPersonTurns } from '../services/findPersonTurns';
 import { findPersonHealthCenters } from '../services/findPersonHealthCenters';
 import { findPersonMedicalControls } from '../services/findPersonMedicalControls';
+import { findPersonDiagnostics } from '../services/findPersonDiagnostics';
 import cacheResponse from '../services/cacheResponse';
 
 /**
@@ -25,6 +26,7 @@ async function findAllPersonData(req: Request, res: Response): Promise<Response>
     const personTurns = await findPersonTurns(persCodigo);
     const personHealthCenters = await findPersonHealthCenters(persCodigo);
     const personMedicalControls = await findPersonMedicalControls(persCodigo);
+    const personDiagnostics = await findPersonDiagnostics(persCodigo);
 
     const allPersonData = {
       persona: {
@@ -33,6 +35,7 @@ async function findAllPersonData(req: Request, res: Response): Promise<Response>
         gender: body.gender,
         persona_codigo: persCodigo,
       },
+      atraviesa_consumo_de_sustancias: personDiagnostics.atraviesa_consumo_de_sustancias,
       realiza_controles_medicos: {
         value: personMedicalControls.value,
         ultima_fecha_de_consulta: personMedicalControls.ultima_fecha_de_consulta,
