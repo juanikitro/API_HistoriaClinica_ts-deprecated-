@@ -4,6 +4,7 @@ export async function findPersonSubstanceUse(persCodigo: number): Promise<{
   'atraviesa_consumo_de_sustancias': {
     value: boolean,
     ultima_fecha_de_consulta: string | null,
+    turnCodigo: string | null,
   }
 }> {
   const pool = await db.poolConnect;
@@ -23,7 +24,8 @@ export async function findPersonSubstanceUse(persCodigo: number): Promise<{
     WHERE 
         d.diagCodigoInterno IN (${diagCodigosInternos.map(codigo => `'${codigo}'`).join(', ')})
         AND 
-        t.paciCodigo = @persCodigo;
+        t.paciCodigo = @persCodigo
+    ORDER BY t.turnCodigo DESC;
     `;
   const result = await pool.request()
     .input('persCodigo', String(persCodigo))
@@ -33,6 +35,7 @@ export async function findPersonSubstanceUse(persCodigo: number): Promise<{
     atraviesa_consumo_de_sustancias: {
       value: result.recordset[0]?.turnCodigo ? true : false,
       ultima_fecha_de_consulta: result.recordset[0]?.turnFechaAsignado || null,
+      turnCodigo: result.recordset[0]?.turnCodigo || null,
     }
   };
 }
