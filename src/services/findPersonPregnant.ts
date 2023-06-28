@@ -1,7 +1,7 @@
 import db from '../database/connection';
 
-export async function findPersonPregnantMinor(persCodigo: number): Promise<{
-  'menor_de_edad_embarazada': {
+export async function findPersonPregnant(persCodigo: number): Promise<{
+  'persona_embarazada_actualmente': {
     value: boolean,
     ultima_fecha_de_consulta: string | null,
     turnCodigo: string | null,
@@ -25,6 +25,7 @@ export async function findPersonPregnantMinor(persCodigo: number): Promise<{
         d.diagCodigoInterno IN (${diagCodigosInternos.map(codigo => `'${codigo}'`).join(', ')})
         AND 
         t.paciCodigo = @persCodigo
+        AND t.turnFechaAsignado >= DATEADD(MONTH, -9, GETDATE())
     ORDER BY t.turnCodigo DESC;
     `;
   const result = await pool.request()
@@ -32,7 +33,7 @@ export async function findPersonPregnantMinor(persCodigo: number): Promise<{
     .query(query);
 
   return {
-    menor_de_edad_embarazada: {
+    persona_embarazada_actualmente: {
       value: result.recordset[0]?.turnCodigo ? true : false,
       ultima_fecha_de_consulta: result.recordset[0]?.turnFechaAsignado || null,
       turnCodigo: result.recordset[0]?.turnCodigo || null,
@@ -40,4 +41,4 @@ export async function findPersonPregnantMinor(persCodigo: number): Promise<{
   };
 }
 
-export default findPersonPregnantMinor;
+export default findPersonPregnant;

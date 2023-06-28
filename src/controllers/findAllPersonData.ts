@@ -7,7 +7,7 @@ import { findPersonHealthCenters } from '../services/findPersonHealthCenters';
 import { findPersonMedicalControls } from '../services/findPersonMedicalControls';
 import { findPersonSubstanceUse } from '../services/findPersonSubstanceUse';
 import { findPersonMentalProblems } from '../services/findPersonMentalProblems';
-import { findPersonPregnantMinor } from '../services/findPersonPregnantMinor';
+import { findPersonPregnant } from '../services/findPersonPregnant';
 import cacheResponse from '../services/cacheResponse';
 
 /**
@@ -30,7 +30,7 @@ async function findAllPersonData(req: Request, res: Response): Promise<Response>
     const personMedicalControls = await findPersonMedicalControls(persCodigo);
     const personHealthCenters = await findPersonHealthCenters(persCodigo);
     const personTurns = await findPersonTurns(persCodigo);
-    const personPregnantMinor = await findPersonPregnantMinor(persCodigo);
+    const personPregnantMinor = await findPersonPregnant(persCodigo);
 
     const allPersonData = {
       persona: {
@@ -44,7 +44,7 @@ async function findAllPersonData(req: Request, res: Response): Promise<Response>
       realiza_controles_medicos: personMedicalControls.realiza_controles_medicos,
       centros_de_salud_donde_se_atiende: personHealthCenters.centros_de_salud_donde_se_atiende,
       turnos: personTurns.turnos,
-      menor_de_edad_embarazada: personPregnantMinor.menor_de_edad_embarazada,
+      persona_embarazada_actualmente: personPregnantMinor.persona_embarazada_actualmente,
     };
 
     cacheResponse(`${body.document_number}${body.document_type}${body.gender}`, allPersonData);
