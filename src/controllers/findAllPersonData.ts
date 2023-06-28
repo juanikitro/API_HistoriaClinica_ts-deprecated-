@@ -23,10 +23,10 @@ async function findAllPersonData(req: Request, res: Response): Promise<Response>
     }
 
     const persCodigo = await findpersCodigo(body);
-    const personTurns = await findPersonTurns(persCodigo);
-    const personHealthCenters = await findPersonHealthCenters(persCodigo);
-    const personMedicalControls = await findPersonMedicalControls(persCodigo);
     const personDiagnostics = await findPersonDiagnostics(persCodigo);
+    const personMedicalControls = await findPersonMedicalControls(persCodigo);
+    const personHealthCenters = await findPersonHealthCenters(persCodigo);
+    const personTurns = await findPersonTurns(persCodigo);
 
     const allPersonData = {
       persona: {
@@ -36,24 +36,9 @@ async function findAllPersonData(req: Request, res: Response): Promise<Response>
         persona_codigo: persCodigo,
       },
       atraviesa_consumo_de_sustancias: personDiagnostics.atraviesa_consumo_de_sustancias,
-      realiza_controles_medicos: {
-        value: personMedicalControls.value,
-        ultima_fecha_de_consulta: personMedicalControls.ultima_fecha_de_consulta,
-        turnos_codigo: personMedicalControls.turnCodigo,
-      },
-      centros_de_salud_donde_se_atiende: {
-        value: personHealthCenters.value,
-        ultima_fecha_de_consulta: personHealthCenters.ultima_fecha_de_consulta,
-        turnos_codigos: personHealthCenters.turnCodigos,
-      },
-      turnos: {
-        value: personTurns.value,
-        tipo_de_especialidad: personTurns.tipo_de_especialidad,
-        asistio: personTurns.asistio,
-        reprogramado: personTurns.reprogramado,
-        reprogramado_fecha: personTurns.reprogramado_fecha,
-        turnCodigo: personTurns.turnCodigo,
-      },
+      realiza_controles_medicos: personMedicalControls.realiza_controles_medicos,
+      centros_de_salud_donde_se_atiende: personHealthCenters.centros_de_salud_donde_se_atiende,
+      turnos: personTurns.turnos
     };
 
     cacheResponse(`${body.document_number}${body.document_type}${body.gender}`, allPersonData);

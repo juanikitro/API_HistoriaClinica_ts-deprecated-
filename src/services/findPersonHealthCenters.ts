@@ -6,9 +6,11 @@ import db from '../database/connection';
  * @returns All the necessary information about the medical centers where the person was treated.
  */
 export async function findPersonHealthCenters(persCodigo: number): Promise<{
-  'value': string[],
-  'ultima_fecha_de_consulta': Date[],
-  'turnCodigos': number[]
+  centros_de_salud_donde_se_atiende: {
+    'value': string[],
+    'ultima_fecha_de_consulta': Date[],
+    'turnCodigos': number[]
+  }
 }> {
   const pool = await db.poolConnect;
 
@@ -30,9 +32,11 @@ export async function findPersonHealthCenters(persCodigo: number): Promise<{
     .query(query);
 
   return {
-    value: result.recordset.map((item: { 'ubicDescripcion': string }) => item.ubicDescripcion),
-    ultima_fecha_de_consulta: result.recordset.map((item: { 'turnFecha': Date }) => item.turnFecha),
-    turnCodigos: result.recordset.map((item: { 'turnCodigo': number }) => item.turnCodigo),
+    centros_de_salud_donde_se_atiende: {
+      value: result.recordset.map((item: { 'ubicDescripcion': string }) => item.ubicDescripcion),
+      ultima_fecha_de_consulta: result.recordset.map((item: { 'turnFecha': Date }) => item.turnFecha),
+      turnCodigos: result.recordset.map((item: { 'turnCodigo': number }) => item.turnCodigo),
+    }
   };
 }
 
