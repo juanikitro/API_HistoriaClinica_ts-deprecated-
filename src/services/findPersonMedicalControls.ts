@@ -19,7 +19,7 @@ export async function findPersonMedicalControls(persCodigo: number): Promise<{
         TURN.suesCodigo = SUES.suesCodigo
     WHERE
         TURN.paciCodigo = @persCodigo AND
-        TURN.turnLlegada IS NOT NULL AND
+        TURN.turnLlegada IS NOT NULL
     ORDER BY TURN.turnCodigo DESC;`;
   const result = await pool.request()
     .input('persCodigo', String(persCodigo))
