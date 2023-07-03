@@ -1,0 +1,116 @@
+{
+    "person": {
+        "document_number": "integer",
+        "document_type": "string",
+        "gender": "string"
+    },
+    "indicators": {
+        "substanceUse": {
+            "value": "boolean",
+            "lastTurn": "date",
+            "turnCodigo": "integer"
+        },
+        "mentalProblems": {
+            "value": "boolean",
+            "types": "string[]"
+        },
+        "recurrentOrChronicSickness": {
+            "value": "boolean"
+        },
+        "catastrophicSickness": {
+            "value": "boolean"
+        },
+        "disability": {
+            "value": "boolean",
+            "type": "string"
+        },
+        "medicalControls": {
+            "quantity": "integer",
+            "lastTurn": "date",
+            "turnCodigo": "integer"
+        },
+        "therapeuticTreatment": {
+            "value": "boolean",
+            "type": "string"
+        },
+        "medicalCenters": [
+            {
+                "name": "string",
+                "lastTurn": "date",
+                "turnCodigo": "integer"
+            }
+        ],
+        "turns": [
+            {
+                "date": "date",
+                "specialty": "string",
+                "attend": "boolean",
+                "rescheduled": "boolean",
+                "rescheduledDate": "date",
+                "turnCodigo": "integer"
+            }
+        ],
+        "pregnancy": {
+            "value": "boolean",
+            "minor": "boolean",
+            "risk": "boolean",
+            "numberOfControls": "integer",
+            "lastTurn": "date",
+            "turnCodigo": "integer"
+        },
+        "pediatricControls": {
+            "value": "boolean",
+            "quantity": "integer",
+            "lastTurn": "date",
+            "turnCodigo": "integer"
+        },
+        "dentalControls": {
+            "value": "boolean",
+            "lastTurn": "date",
+            "turnCodigo": "integer"
+        },
+        "ophthalmologicalControls": {
+            "value": "boolean",
+            "lastTurn": "date",
+            "turnCodigo": "integer"
+        }
+    },
+    "alerts": {
+        "pregnantMinor": "boolean",
+        "pregnantWithoutControls": "boolean",
+        "lackOfHygiene": "boolean",
+        "lackOfCares": "boolean",
+        "sexualAbuse": "boolean",
+        "childAbuse": "boolean",
+        "withoutFamilySupport": "boolean",
+        "dysfunctionalFamily": "boolean",
+        "withoutAdherence": "boolean",
+        "chronicPalliative": "boolean",
+        "domesticAccident": "boolean",
+        "withoutDNI": "boolean",
+        "probableConsumption": "boolean",
+        "probablyPsychiatric": "boolean",
+        "attemptedSuicide": "boolean",
+        "foodTreatment": "boolean",
+        "conductDisorder": "boolean",
+        "posttraumaticStress": "boolean",
+        "autolyticBehaviors": "boolean",
+        "disability": "boolean",
+        "absentFather": "boolean",
+        "scarceSymbolicResources": "boolean",
+        "abandonment": "boolean",
+        "genderViolence": "boolean",
+        "migrants": "boolean",
+        "withoutTreatmentAdherence": "boolean",
+        "lowLevelAlarms": "boolean",
+        "housingProblem": "boolean",
+        "insufficientFinancialResources": "boolean",
+        "lawConflicts": "boolean",
+        "familyDisorganization": "boolean",
+        "littleNeonatologyPresence": "boolean",
+        "teenageMother": "boolean",
+        "streetSituation": "boolean",
+        "deadFetus": "boolean",
+        "deceasedBaby": "boolean"
+    }
+}
