@@ -1,16 +1,16 @@
 import db from '../database/connection';
 
 export async function findPersonMedicalControls(persCodigo: number): Promise<{
-  realiza_controles_medicos: {
-    'value': boolean,
-    'ultima_fecha_de_consulta': Date,
+  medicalControls: {
+    'quantity': number,
+    'lastTurn': Date,
     'turnCodigo': number
   }
 }> {
   const pool = await db.poolConnect;
 
   const query = `
-    SELECT TOP 1
+    SELECT
         TURN.turnCodigo,
         TURN.turnFechaAsignado
     FROM
@@ -26,9 +26,9 @@ export async function findPersonMedicalControls(persCodigo: number): Promise<{
     .query(query);
 
   return {
-    realiza_controles_medicos: {
-      value: !!result.recordset[0]?.turnCodigo,
-      ultima_fecha_de_consulta: result.recordset[0]?.turnFechaAsignado ?? null,
+    medicalControls: {
+      quantity: result.recordset.length,
+      lastTurn: result.recordset[0]?.turnFechaAsignado ?? null,
       turnCodigo: result.recordset[0]?.turnCodigo ?? null,
     },
   };

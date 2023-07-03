@@ -1,27 +1,19 @@
 /* eslint-disable max-len */
 import db from '../database/connection';
 
+interface Turn { date: Date; specialty: string; attend: boolean; rescheduled: boolean; rescheduledDate: Date; turnCodigo: number; }
+
 /**
  * This function retrieves information about the latest appointment of a given patient,
  * including the date, type of specialty, and whether it was attended or rescheduled.
  * @param {number} persCodigo
  * @returns All the needed info about the person's turns.
  */
-export async function findPersonTurns(persCodigo: number): Promise<{
-  turnos: {
-    value: Date | null,
-    tipo_de_especialidad: string | null,
-    asistio: boolean | null,
-    reprogramado: boolean | null,
-    reprogramado_fecha: Date | null,
-    turnCodigo: number
-  }
-}> {
+export async function findPersonTurns(persCodigo: number) {
   const pool = await db.poolConnect;
 
   const query = `
     SELECT
-      TOP 1
       TURN.turnCodigo,
       TURN.turnFechaAsignado,
       TURN.turnLlegada,
@@ -39,16 +31,19 @@ export async function findPersonTurns(persCodigo: number): Promise<{
     .input('persCodigo', String(persCodigo))
     .query(query);
 
-  return {
-    turnos: {
-      value: result.recordset[0]?.turnFechaAsignado ?? null,
-      tipo_de_especialidad: result.recordset[0]?.suesDescripcion ?? null,
-      asistio: !!result.recordset[0]?.turnLlegada,
-      reprogramado: (result.recordset[0]?.turnReprogramar === 1),
-      reprogramado_fecha: (result.recordset[0]?.turnReprogramar === 1) ? result.recordset[0]?.turnFecha : null,
-      turnCodigo: result.recordset[0]?.turnCodigo ?? null,
-    }
-  };
+  const turns: Turn[] = [];
+  result.recordset.forEach((item) => {
+    turns.push({
+      date: item.turnFechaAsignado,
+      specialty: item.suesDescripcion,
+      attend: !!item.turnLlegada,
+      rescheduled: item.turnReprogramar,
+      rescheduledDate: item.turnFecha,
+      turnCodigo: item.turnCodigo,
+    });
+  });
+
+  return turns;
 }
 
 export default findPersonTurns;

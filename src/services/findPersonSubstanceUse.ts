@@ -1,15 +1,15 @@
 import db from '../database/connection';
 
 export async function findPersonSubstanceUse(persCodigo: number): Promise<{
-  'atraviesa_consumo_de_sustancias': {
+  'substanceUse': {
     value: boolean,
-    ultima_fecha_de_consulta: string | null,
+    lastTurn: string | null,
     turnCodigo: string | null,
   }
 }> {
   const pool = await db.poolConnect;
 
-  const diagCodigosInternos: string[] = ["F10", "F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18", "F19"];
+  const diagCodigosInternos: string[] = ['F10', 'F11', 'F12', 'F13', 'F14', 'F15', 'F16', 'F17', 'F18', 'F19'];
 
   const query = `
     SELECT 
@@ -22,7 +22,7 @@ export async function findPersonSubstanceUse(persCodigo: number): Promise<{
     INNER JOIN 
         SanMiguel.dbo.Diagnostico AS d ON pn.diagCodigo = d.diagCodigo 
     WHERE 
-        d.diagCodigoInterno IN (${diagCodigosInternos.map(codigo => `'${codigo}'`).join(', ')})
+        d.diagCodigoInterno IN (${diagCodigosInternos.map((codigo) => `'${codigo}'`).join(', ')})
         AND 
         t.paciCodigo = @persCodigo
     ORDER BY t.turnCodigo DESC;
@@ -32,11 +32,11 @@ export async function findPersonSubstanceUse(persCodigo: number): Promise<{
     .query(query);
 
   return {
-    atraviesa_consumo_de_sustancias: {
-      value: result.recordset[0]?.turnCodigo ? true : false,
-      ultima_fecha_de_consulta: result.recordset[0]?.turnFechaAsignado || null,
+    substanceUse: {
+      value: !!result.recordset[0]?.turnCodigo,
+      lastTurn: result.recordset[0]?.turnFechaAsignado || null,
       turnCodigo: result.recordset[0]?.turnCodigo || null,
-    }
+    },
   };
 }
 

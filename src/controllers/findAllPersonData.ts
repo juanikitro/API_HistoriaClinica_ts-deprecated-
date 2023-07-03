@@ -8,7 +8,6 @@ import { findPersonMedicalControls } from '../services/findPersonMedicalControls
 import { findPersonSubstanceUse } from '../services/findPersonSubstanceUse';
 import { findPersonMentalProblems } from '../services/findPersonMentalProblems';
 import { findPersonPregnant } from '../services/findPersonPregnant';
-import { findPersonPregnantMinor } from '../services/findPersonPregnantMinor';
 import cacheResponse from '../services/cacheResponse';
 
 /**
@@ -32,22 +31,90 @@ async function findAllPersonData(req: Request, res: Response): Promise<Response>
     const personHealthCenters = await findPersonHealthCenters(persCodigo);
     const personTurns = await findPersonTurns(persCodigo);
     const personPregnant = await findPersonPregnant(persCodigo);
-    const personPregnantMinor = await findPersonPregnantMinor(persCodigo);
 
     const allPersonData = {
-      persona: {
-        document_type: body.document_type,
+      person: {
         document_number: body.document_number,
+        document_type: body.document_type,
         gender: body.gender,
-        persona_codigo: persCodigo,
+        persCodigo,
       },
-      atraviesa_consumo_de_sustancias: personSubstanceUse.atraviesa_consumo_de_sustancias,
-      padece_problemas_de_salud_mental: personMentalProblems.padece_problemas_de_salud_mental,
-      realiza_controles_medicos: personMedicalControls.realiza_controles_medicos,
-      centros_de_salud_donde_se_atiende: personHealthCenters.centros_de_salud_donde_se_atiende,
-      turnos: personTurns.turnos,
-      persona_embarazada_actualmente: personPregnant.persona_embarazada_actualmente,
-      menor_de_edad_embarazada: personPregnantMinor.menor_de_edad_embarazada,
+      indicators: {
+        substanceUse: personSubstanceUse.substanceUse,
+        mentalProblems: personMentalProblems.mentalProblems,
+        recurrentOrChronicSickness: {
+          value: 'ELIAS',
+        },
+        catastrophicSickness: {
+          value: 'ELIAS',
+        },
+        disability: {
+          value: 'ELIAS',
+          type: 'ELIAS',
+        },
+        medicalControls: personMedicalControls.medicalControls,
+        therapeuticTreatment: {
+          value: 'ELIAS',
+          type: 'ELIAS',
+        },
+        medicalCenters: personHealthCenters,
+        turns: personTurns,
+        pregnancy: personPregnant.pregnancy,
+        pediatricControls: {
+          value: 'boolean',
+          quantity: 'integer',
+          lastTurn: 'date',
+          turnCodigo: 'integer',
+        },
+        dentalControls: {
+          value: 'boolean',
+          lastTurn: 'date',
+          turnCodigo: 'integer',
+        },
+        ophthalmologicalControls: {
+          value: 'boolean',
+          lastTurn: 'date',
+          turnCodigo: 'integer',
+        },
+      },
+      alerts: {
+        pregnantMinor: 'boolean',
+        pregnantWithoutControls: 'boolean',
+        lackOfHygiene: 'boolean',
+        lackOfCares: 'boolean',
+        sexualAbuse: 'boolean',
+        childAbuse: 'boolean',
+        withoutFamilySupport: 'boolean',
+        dysfunctionalFamily: 'boolean',
+        withoutAdherence: 'boolean',
+        chronicPalliative: 'boolean',
+        domesticAccident: 'boolean',
+        withoutDNI: 'boolean',
+        probableConsumption: 'boolean',
+        probablyPsychiatric: 'boolean',
+        attemptedSuicide: 'boolean',
+        foodTreatment: 'boolean',
+        conductDisorder: 'boolean',
+        posttraumaticStress: 'boolean',
+        autolyticBehaviors: 'boolean',
+        disability: 'boolean',
+        absentFather: 'boolean',
+        scarceSymbolicResources: 'boolean',
+        abandonment: 'boolean',
+        genderViolence: 'boolean',
+        migrants: 'boolean',
+        withoutTreatmentAdherence: 'boolean',
+        lowLevelAlarms: 'boolean',
+        housingProblem: 'boolean',
+        insufficientFinancialResources: 'boolean',
+        lawConflicts: 'boolean',
+        familyDisorganization: 'boolean',
+        littleNeonatologyPresence: 'boolean',
+        teenageMother: 'boolean',
+        streetSituation: 'boolean',
+        deadFetus: 'boolean',
+        deceasedBaby: 'boolean',
+      },
     };
 
     cacheResponse(`${body.document_number}${body.document_type}${body.gender}`, allPersonData);
