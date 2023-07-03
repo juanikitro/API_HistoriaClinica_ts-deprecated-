@@ -14,6 +14,7 @@ const dbConfig = {
   },
 };
 
+// TODO: agregar un catch :D
 const pool = new sql.ConnectionPool(dbConfig);
 const poolConnect = pool.connect();
 
