@@ -20,9 +20,7 @@ export async function findPersonMedicalControls(persCodigo: number): Promise<{
     WHERE
         TURN.paciCodigo = @persCodigo AND
         TURN.turnLlegada IS NOT NULL AND
-        SUES.suesDescripcion LIKE '%CONTROL%'
     ORDER BY TURN.turnCodigo DESC;`;
-  // TODO: Consultar si esta es la forma correcta de encontrar controles medicos
   const result = await pool.request()
     .input('persCodigo', String(persCodigo))
     .query(query);
@@ -32,7 +30,7 @@ export async function findPersonMedicalControls(persCodigo: number): Promise<{
       value: !!result.recordset[0]?.turnCodigo,
       ultima_fecha_de_consulta: result.recordset[0]?.turnFechaAsignado ?? null,
       turnCodigo: result.recordset[0]?.turnCodigo ?? null,
-    }
+    },
   };
 }
 
