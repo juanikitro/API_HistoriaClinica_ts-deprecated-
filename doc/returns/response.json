@@ -73,6 +73,11 @@
             "value": "boolean",
             "lastTurn": "date",
             "turnCodigo": "integer"
+        },
+        "gynecologicalControls": {
+            "value": "boolean",
+            "lastTurn": "date",
+            "turnCodigo": "integer"
         }
     },
     "alerts": {

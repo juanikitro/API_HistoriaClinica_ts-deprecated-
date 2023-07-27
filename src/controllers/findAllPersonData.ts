@@ -76,6 +76,11 @@ async function findAllPersonData(req: Request, res: Response): Promise<Response>
           lastTurn: 'date',
           turnCodigo: 'integer',
         },
+        gynecologicalControls: {
+          value: 'boolean',
+          lastTurn: 'date',
+          turnCodigo: 'integer',
+        },
       },
       alerts: {
         pregnantMinor: 'boolean',
